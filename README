@@ -1,0 +1,52 @@
+==========================================================================
+SlimPress
+https://www.SlimPress.org
+An ultra-lightweight WordPress starter theme
+By Scott Fine
+https://www.scott-fine.com
+
+Version: 1.0
+Requires at least: WordPress 4.9.6
+GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/licenses.en.html
+Tags: boilerplate, semantic, lightweight, grid
+
+SlimPress is based on the HTML5 Blank boilerplate theme.
+HTML5 Blank | (C) 2013-2019 HTML5 Blank | MIT License | http://html5blank.com.
+Normalizing styles based on normalize.css v2.1.3
+normalize.css | MIT License | git.io/normalize.
+
+==========================================================================
+SlimPress strives to separate the essentials from the options. It’s a complete starter theme which leaves aside any features that might not be necessary while preserving the option to easily activate them.
+
+Why SlimPress?
+A good starter theme is an essential timesaving tool for WordPress development. As useful as they are, they tend to suffer from “code bloat” – they come along with a lot of features many sites will never use or need – and virtually NO site will use ALL the features that are included. That’s true for open source DIY boilerplate themes, and especially true for “premium” starter themes, which often run so slowly they hinder their own search engine rankings.
+
+How Do I Activate SlimPress’s Optional Features?
+Most of the optional features are included in the functions.php file. Activating an option is as easy as uncommenting/commenting out the corresponding code, which is well documented for that purpose.
+
+Is SlimPress Responsive?
+Yes. SlimPress is fully responsive “out of the box” without the need for additional frameworks.
+
+Will SlimPress Automatically Make My WordPress Site Faster?
+SlimPress will give you a much better starting point for building a fast site than most other starter themes, including the ones that come pre-packaged with WordPress. It will give you a MUCH, MUCH better starting point for building a fast site than premium themes like Divi and Avada.
+
+Can I Use Frameworks Like Bootstrap With SlimPress?
+Yes, if you wish you absolutely can. However, SlimPress utilizes CSS Grid and Flexbox, which unlike Bootstrap do not require any additional code, or force your site to load tons of features you’re not using.
+
+Does SlimPress Work On Older Browsers?
+SlimPress works on all modern browsers, as well as Internet Explorer 10+.
+
+How Can I Use SlimPress’s Responsive Sidebars?
+The responsive sidebars correspond to the left and right widget areas. Simply add whichever widgets you’d like to those areas in the WordPress dashboard. On mobile devices by default the sidebars will stack under the main content area. This is a very flexible feature, especially in conjunction with the custom HTML widgets and/or the CSS Grid.
+
+How Do I Activate SlimPress’s Mobile Navigation Menu?
+It’s set to go by default!
+
+How Do I Use the Gulp Workflow? Do I Have to Use It?
+  * If you’re not a developer, you can use the optional Gutenberg visual page builder.
+  * If you’re new at coding, you can activate and modify the style.css file.
+  * If you’re a developer, you can use the included SCSS files, and the Gulp file if you wish.
+
+Why Use SlimPress Instead of a Premium Page Builder Theme Like Divi, Elementor, or Avada?
+With the new Gutenberg page builder that comes pre-packaged with WordPress, you can enjoy the drag & drop and block editing features of premium themes without the expense, bugs, limitations, and extraneous code which slow down your site and create unexpected layout issues.
