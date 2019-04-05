@@ -1,0 +1,26 @@
+/*---------------
+Colors
+---------------*/
+$color-primary: #000000;
+$color-secondary: #ffffff;
+$color-tertiary: #888888;
+
+/*---------------
+Fonts
+---------------*/
+$font-primary: "Trebuchet MS", Arial, sans-serif;
+
+$font-xsmall: 16px;
+$font-small: 17px;
+$font-medium: 17px;
+$font-large: 17px;
+$font-xlarge: 18px;
+
+/*---------------
+Screen Widths
+---------------*/
+$screen-xs: "(min-width: 576px)";
+$screen-sm: "(min-width: 768px)";
+$screen-md: "(min-width: 992px)";
+$screen-lg: "(min-width: 1200px)";
+$screen-xl: "(min-width: 1400px)";

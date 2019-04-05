@@ -1,0 +1,20 @@
+// Media Queries
+@mixin browser_width($breakpoint) {
+
+  @if $breakpoint == xs {
+    @media #{$screen-xs} { @content; }
+  }
+  @else if $breakpoint == sm {
+    @media #{$screen-sm} { @content; }
+  }
+  @else if $breakpoint == md {
+    @media #{$screen-md}  { @content; }
+  }
+  @else if $breakpoint == lg {
+    @media #{$screen-lg}  { @content; }
+  }
+  @else if $breakpoint == xl {
+    @media #{$screen-xl}  { @content; }
+  }
+
+}
