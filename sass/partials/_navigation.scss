@@ -1,0 +1,98 @@
+/*-----------------------------------------------------
+Nav
+-----------------------------------------------------*/
+
+// Mobile nav toggle
+button.nav-button {
+  padding: 9px 9px 7px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  z-index: 10;
+  &:focus { outline:transparent; }
+  @include browser_width(sm) {
+    padding: 15px 15px 12px;
+  }
+  @include browser_width(md) {
+    display: none;
+  }
+
+  span.icon-bar {
+      display: block;
+      height: 2px;
+      width: 16px;
+      margin-bottom: 4px;
+      border-radius: 1px;
+      @include browser_width(sm) {
+        width: 24px;
+        margin-bottom: 6px;
+      }
+  }
+}
+
+.nav-wrapper {
+  // Hide until toggle on mobile
+  display: none;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 0;
+  width: 50%;
+  margin-left: auto;
+  border-bottom-left-radius: 10px;
+  opacity: 0;
+
+  @include browser_width(xs) {
+    width: 40%;
+  }
+  @include browser_width(md) {
+    // Show on desktop/large tablet
+    display: inherit;
+    position: static;
+    height: auto;
+    width: auto;
+    border-radius: 0;
+    opacity: 1;
+  }
+}
+
+// Mobile show and hide classes for JS
+.nav-wrapper.show {
+  display: block;
+  height: auto;
+  opacity: 0.9;
+}
+.nav-wrapper.hide {
+  height: 0;
+  opacity: 0;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 0 5px;
+
+  @include browser_width(sm) {
+    padding: 6rem 0 5px;
+  }
+  @include browser_width(md) {
+    flex-direction: inherit;
+    padding: 0;
+  }
+
+  a {
+    padding: 0 10px 16px;
+
+    @include browser_width(xs) {
+      padding: 0 0.75rem 1.5rem;
+    }
+    @include browser_width(md) {
+      padding: 1.75rem 0.75rem;
+    }
+    @include browser_width(lg) {
+      padding: 2.5rem 1rem;
+    }
+  }
+}

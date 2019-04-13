@@ -1,0 +1,27 @@
+body {
+  @include color_scheme(primary);
+}
+
+header {
+  @include color_scheme(inverse);
+}
+
+footer {
+  @include color_scheme(inverse);
+}
+
+// Mobile menu toggle
+button.nav-button {
+  background: transparent;
+  border-color: $color-secondary;
+  span.icon-bar {
+    background: $color-secondary;
+  }
+}
+
+.nav-wrapper {
+  background: $color-primary;
+  nav {
+    background: transparent;
+  }
+}

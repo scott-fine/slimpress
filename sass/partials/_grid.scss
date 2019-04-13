@@ -1,0 +1,38 @@
+/*----------------------------------------------
+Wrapper (CSS Grid)
+----------------------------------------------*/
+
+.wrapper {
+  display: grid;
+  grid-template-areas:
+    'header'
+    'main'
+    'left'
+    'right'
+    'footer';
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: auto;
+  min-height: 100%;
+  background: transparent;
+
+  @include browser_width(lg) {
+    grid-template-areas:
+      'header header header header'
+      'left main main right'
+      'left main main right'
+      'footer footer footer footer';
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-columns: 4fr 4fr 4fr 4fr;
+  }
+}
+
+/*
+.left & .right classes are for sidebars
+Can be section, article, div etc.
+See sidebar.php
+*/
+header {grid-area: header;}
+main   {grid-area: main;}
+.left  {grid-area: left;}
+.right {grid-area: right;}
+footer {grid-area: footer;}
