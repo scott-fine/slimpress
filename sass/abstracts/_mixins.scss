@@ -1,6 +1,19 @@
+// Color Scheme
+@mixin color_scheme($scheme) {
+  @if $scheme == primary {
+    color: $color-primary;
+    background: $color-secondary;
+    a { color: $color-primary; }
+  }
+  @else if $scheme == inverse {
+    color: $color-secondary;
+    background: $color-primary;
+    a { color: $color-secondary; }
+  }
+}
+
 // Media Queries
 @mixin browser_width($breakpoint) {
-
   @if $breakpoint == xs {
     @media #{$screen-xs} { @content; }
   }
@@ -16,5 +29,4 @@
   @else if $breakpoint == xl {
     @media #{$screen-xl}  { @content; }
   }
-
 }

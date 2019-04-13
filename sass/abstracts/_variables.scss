@@ -1,0 +1,31 @@
+/*--------------------------------------------------------
+Site Variables: Colors, Fonts, and Breakpoints
+--------------------------------------------------------*/
+
+/*---------------
+Colors
+---------------*/
+$color-primary:   #000000;
+$color-secondary: #ffffff;
+$color-tertiary:  #888888;
+
+/*---------------
+Fonts
+---------------*/
+$font-primary: 'Trebuchet MS', Arial, sans-serif;
+$font-base-size: 1em;
+
+$font-xsmall: 0.75rem;
+$font-small:  0.90rem;
+$font-medium: 1.00rem;
+$font-large:  1.25rem;
+$font-xlarge: 1.50rem;
+
+/*---------------
+Breakpoints
+---------------*/
+$screen-xs: "(min-width: 576px)";
+$screen-sm: "(min-width: 768px)";
+$screen-md: "(min-width: 992px)";
+$screen-lg: "(min-width: 1200px)";
+$screen-xl: "(min-width: 1400px)";

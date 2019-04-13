@@ -1,0 +1,24 @@
+/*--------------------------------------------------------
+Sidebars
+--------------------------------------------------------*/
+
+/*
+.left & .right classes can be section, article, div etc.
+See sidebar.php
+*/
+.left, .right {
+  padding: 0 1rem;
+
+  @include browser_width(xs) {
+    padding: 0 1.5rem;
+  }
+  @include browser_width(md) {
+    padding: 0.5rem 2rem;
+  }
+  @include browser_width(lg) {
+    padding: 0.5rem 3rem;
+  }
+  @include browser_width(xl) {
+    padding: 0.5rem 5rem;
+  }
+}

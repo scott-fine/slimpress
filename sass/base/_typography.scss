@@ -1,0 +1,44 @@
+/*--------------------------------------------------------
+Typography
+--------------------------------------------------------*/
+
+html {
+  font-family: $font-primary;
+  font-size: $font-base-size;
+  line-height: 1.35;
+}
+
+*, *:after, *:before {
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav a {
+  font-size: $font-medium;
+  line-height: normal;
+  font-weight: bold;
+  text-align: center;
+
+  @include browser_width(xs) {
+    font-size: $font-large;
+  }
+  @include browser_width(md) {
+    &:hover, &:active, &:focus {
+      text-decoration: underline;
+    }
+  }
+  @include browser_width(lg) {
+    font-size: $font-xlarge;
+  }
+}
+
+footer {
+  font-size: $font-small;
+  @include browser_width(md) {
+    font-size: $font-medium;
+  }
+}

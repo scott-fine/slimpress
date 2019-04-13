@@ -1,0 +1,69 @@
+/*
+	Theme Name: SlimPress
+	Theme URI: https://www.SlimPress.org
+  Author: Scott Fine
+	Author URI: https://www.scott-fine.com
+	Description: SlimPress WordPress Boilerplate Theme
+	Version: 1.0
+  Requires at least: WordPress 4.9.6
+  License: GNU General Public License v2 or later
+  License URI: https://www.gnu.org/licenses/licenses.en.html
+	Tags: boilerplate, semantic, lightweight, grid
+
+  SlimPress is based on the HTML5 Blank boilerplate theme.
+  HTML5 Blank | (C) 2013-2019 HTML5 Blank | MIT License | http://html5blank.com.
+
+  Normalizing styles based on normalize.css v2.1.3
+  normalize.css | MIT License | git.io/normalize.
+*/
+
+/***************************
+Sass File Structure...
+
+abstracts/
+  _variables.scss
+  _mixins.scss
+
+base/
+  _base.scss # Includes <main> element
+  _colors.scss
+  _typography.scss
+  _normalize.scss
+
+components/
+  _buttons.scss
+
+pages/ # empty placeholder
+
+partials/
+ _grid.scss # CSS Grid
+ _header.scss
+ _footer.scss
+ _sidebars.scss # .left and .right
+ _navigation.scss
+
+vendors/ # empty placeholder
+
+slimpress.scss # main Sass file
+
+***************************/
+
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+
+@import 'base/base-styles';
+@import 'base/colors';
+@import 'base/typography';
+@import 'base/normalize';
+
+@import 'components/buttons';
+
+@import 'partials/grid';
+@import 'partials/header';
+@import 'partials/footer';
+@import 'partials/sidebars';
+@import 'partials/navigation';
+
+/* IE 10+ */
+:root header { min-height: 12vh\0; }
+:root main { min-height: 72vh\0; }

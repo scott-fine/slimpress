@@ -1,156 +1,106 @@
-// Gulp.js configuration
-'use strict';
+var gulp          = require('gulp'),
+    sass          = require('gulp-sass'),
+    postcss       = require('gulp-postcss'),
+    autoprefixer  = require('autoprefixer'),
+    cssnano       = require('cssnano'),
+    sourcemaps    = require('gulp-sourcemaps'),
+    deporder      = require('gulp-deporder'),
+    concat        = require('gulp-concat'),
+    mqpacker      = require('css-mqpacker'),
+    stripdebug    = require('gulp-strip-debug'),
+    babel         = require('gulp-babel'),
+    uglify        = require('gulp-uglify'),
+    browserSync   = require('browser-sync').create();
 
-// set address of localhost for browsersync
-var localsync = 'localhost/www';
+// Gather project variables in one section for ease of use
+const configOpts = {
+  proxy:     'localhost/slimpress_master',
+  base:      './',
 
-const
+  stylesrc:  'sass/**/{*.scss,_*.scss}',
+  styledest: 'css',
+  stylefile: 'slimpress.min.css',
 
-  // source and build folders
-  dir = {
-    src         : './',
-    build       : './'
+  jssrc:     'js/source/*.js',
+  jsdest:    'js',
+  jsfile:    'slimpress.min.js'
+}
+
+const syncOpts = {
+  proxy:   configOpts.proxy,
+  baseDir: configOpts.base,
+  open:    false,
+  notify:  true
+};
+
+var paths = {
+  styles: {
+    src:  configOpts.stylesrc,
+    dest: configOpts.styledest,
+    file: configOpts.stylefile
   },
 
-  // Gulp and plugins
-  gulp          = require('gulp'),
-  gutil         = require('gulp-util'),
-  newer         = require('gulp-newer'),
-  imagemin      = require('gulp-imagemin'),
-  sass          = require('gulp-sass'),
-  postcss       = require('gulp-postcss'),
-  deporder      = require('gulp-deporder'),
-  concat        = require('gulp-concat'),
-  stripdebug    = require('gulp-strip-debug'),
-  uglify        = require('gulp-uglify')
-;
-
-// Browser-sync
-var browsersync = false;
-
-
-// PHP settings
-const php = {
-  src           : dir.src + 'template/**/*.php',
-  build         : dir.build
+  js: {
+    src:  configOpts.jssrc,
+    dest: configOpts.jsdest,
+    file: configOpts.jsfile
+  }
 };
 
-// copy PHP files
-gulp.task('php', () => {
-  return gulp.src(php.src)
-    .pipe(newer(php.build))
-    .pipe(gulp.dest(php.build));
-});
+function style() {
+  return gulp
+    .src(paths.styles.src)
+    // Initialize sourcemaps before compilation starts
+    //.pipe(sourcemaps.init())
+    .pipe(concat(paths.styles.file))
+    .pipe(sass())
+    .on('error', sass.logError)
+    // Use postcss with autoprefixer and compress the compiled file using cssnano
+    .pipe(postcss([autoprefixer({browsers: ['> 1%'], cascade: false, grid: true}), mqpacker(), cssnano()]))
+    // Now add/write the sourcemaps
+    //.pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest(paths.styles.dest))
+    .pipe(browserSync.stream());
+}
 
-// image settings
-const images = {
-  src         : dir.src + 'img/**/*',
-  build       : dir.build + 'img'
-};
-
-// image processing
-gulp.task('images', () => {
-  return gulp.src(images.src)
-    .pipe(newer(images.build))
-    .pipe(imagemin())
-    .pipe(gulp.dest(images.build));
-});
-
-// CSS settings
-var css = {
-  src         : dir.src + 'scss/**/*',
-  watch       : dir.src + 'scss/**/*',
-  build       : dir.build + 'css/',
-  filename    : 'slimpress.min.css',
-  sassOpts: {
-    outputStyle     : 'nested',
-    imagePath       : images.build,
-    precision       : 3,
-    errLogToConsole : true
-  },
-  processors: [
-    require('postcss-assets')({
-      loadPaths: ['img/'],
-      basePath: dir.build,
-      baseUrl: '/wp-content/themes/slimpress/'
-    }),
-    require('autoprefixer')({
-      grid: true, browsers: ['last 2 versions', '> 2%']
-    }),
-    require('css-mqpacker'),
-    require('cssnano')
-  ]
-};
-
-// CSS processing
-gulp.task('css', ['images'], () => {
-  return gulp.src(css.src)
+function js() {
+  return gulp
+    .src(paths.js.src)
+    // Maintain IE 10 & 11 compatibility
+    .pipe(babel({
+      presets: ['@babel/env']
+    }))
     .pipe(deporder())
-    .pipe(concat(css.filename))
-    .pipe(sass(css.sassOpts))
-    .pipe(postcss(css.processors))
-    .pipe(gulp.dest(css.build))
-    .pipe(browsersync ? browsersync.reload({ stream: true }) : gutil.noop());
-});
-
-// JavaScript settings
-const js = {
-  src         : dir.src + 'js/source/*js',
-  build       : dir.build + 'js/',
-  filename    : 'slimpress.min.js'
-};
-
-// JavaScript processing
-gulp.task('js', () => {
-
-  return gulp.src(js.src)
-    .pipe(deporder())
-    .pipe(concat(js.filename))
+    .pipe(concat(paths.js.file))
+    // Use for debugging if desired
     //.pipe(stripdebug())
     .pipe(uglify())
-    .pipe(gulp.dest(js.build))
-    .pipe(browsersync ? browsersync.reload({ stream: true }) : gutil.noop());
+    .pipe(gulp.dest(paths.js.dest))
+    .pipe(browserSync.stream());
+}
 
-});
+// Reload the page
+function reload() {
+  browserSync.reload();
+}
 
-gulp.task('build', ['php', 'css', 'js']);
+function watch() {
+  browserSync.init(syncOpts);
+  gulp.watch(paths.styles.src, style);
+  gulp.watch(paths.js.src, js);
+  // Tell gulp which files to watch to trigger the reload
+  gulp.watch(['*.html', '*.css', '*.js', '*.php']).on('change', browserSync.reload);
+}
 
-// Browsersync options
-const syncOpts = {
-  proxy       : localsync,
-  files       : dir.build + '**/*',
-  open        : false,
-  notify      : false,
-  ghostMode   : false,
-  ui: {
-    port: 8001
-  }
-};
+// Expose the task by exporting it. This allows you to run it from the commandline using $ gulp style
+// We don't have to expose the reload function. It's currently only useful in other functions
+exports.watch = watch;
+exports.style = style;
+exports.js    = js;
 
+// Specify if tasks run in series or parallel using `gulp.series` and `gulp.parallel`
+var build = gulp.parallel(style, js, watch);
 
-// browser-sync
-gulp.task('browsersync', () => {
-  if (browsersync === false) {
-    browsersync = require('browser-sync').create();
-    browsersync.init(syncOpts);
-  }
-});
-
-// watch for file changes
-gulp.task('watch', ['browsersync'], () => {
-
-  // page changes
-  gulp.watch(php.src, ['php'], browsersync ? browsersync.reload : {});
-
-  // image changes
-  //gulp.watch(images.src, ['images']);
-
-    // CSS changes
-  gulp.watch(css.watch, ['css']);
-
-  // JavaScript main changes
-  gulp.watch(js.src, ['js'], browsersync ? browsersync.reload : {});
-
-});
-
-gulp.task('default', ['build', 'watch']);
+// You can still use `gulp.task` to expose tasks
+// gulp.task('build', build);
+gulp.task('default', build);
