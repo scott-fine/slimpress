@@ -16,7 +16,7 @@ var gulp          = require('gulp'),
 
 // Gather project variables in one section for ease of use
 const configOpts = {
-  proxy:     'localhost/slimpress',
+  proxy:     'localhost/slimpress_master',
   base:      './',
 
   stylesrc:  'sass/**/{*.scss,_*.scss}',

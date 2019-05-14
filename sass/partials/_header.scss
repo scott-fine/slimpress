@@ -6,12 +6,15 @@ header {
   align-items: center;
   justify-content: space-between;
   height: 4rem;
-  padding: 0 0.75rem 0 1.25rem;
+  padding: 0 1rem;
 
   @include browser_width(xs) {
     height: 5rem;
     margin-bottom: 0.5rem;
     padding: 0 1rem;
+  }
+  @include browser_width(sm) {
+    padding: 3rem 1rem;
   }
   @include browser_width(md) {
     height: auto;
@@ -27,15 +30,15 @@ header {
   }
 
   a.logo {
-    width: 50%;
+    width: 60%;
     @include browser_width(md) {
       width: 30%;
+      padding: 10px 0 15px;
     }
   }
 
   a.logo img {
     vertical-align: middle;
     width: 100%;
-    padding: 10px 0 15px;
   }
 }
