@@ -37,8 +37,7 @@ nav a {
 }
 
 footer {
-  font-size: $font-xsmall;
-  line-height: 1.65;
+  font-size: $font-small;
   @include browser_width(md) {
     font-size: $font-medium;
   }
