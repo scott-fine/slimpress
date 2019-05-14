@@ -1,1 +1,6 @@
-// Placeholder file for miscellaneous custom JS
+// custom JS
+
+window.onload = () => {
+  // Show & hide mobile nav menu
+  mobileNav();
+}
