@@ -26,13 +26,14 @@ header {
     margin-bottom: 4rem;
   }
 
+  // logo link container
   a.logo {
     width: 50%;
     @include browser_width(md) {
       width: 30%;
     }
   }
-
+  // logo image
   a.logo img {
     vertical-align: middle;
     width: 100%;
