@@ -1,14 +1,14 @@
+// Mobile nav menu
+
 // Show on toggle
-var show = (toggleContent, toggleButton) => {
+var showNav = (toggleContent, toggleButton) => {
   toggleContent.classList.remove('hide');
   toggleContent.classList.add('show');
-  // So menu resizes responsively
-  toggleContent.style.height = '';
   toggleButton.setAttribute('aria-expanded', 'true');
 };
 
 // Hide on toggle
-var hide = (toggleContent, toggleButton) => {
+var hideNav = (toggleContent, toggleButton) => {
   toggleContent.classList.remove('show');
   toggleContent.classList.add('hide');
   toggleButton.setAttribute('aria-expanded', 'false');
@@ -18,14 +18,14 @@ var hide = (toggleContent, toggleButton) => {
 var toggle = (toggleContent, toggleButton) => {
 	// If content is visible, hide it
 	if (toggleContent.classList.contains('show')) {
-		hide(toggleContent, toggleButton);
+		hideNav(toggleContent, toggleButton);
 		return;
 	}
 	// Otherwise, show it
-	show(toggleContent, toggleButton);
+	  showNav(toggleContent, toggleButton);
 };
 
-window.onload = () => {
+var mobileNav = () => {
 
   var toggleButton = document.getElementById('toggle');
   var toggleContent = document.getElementById('toggle-content');
@@ -35,7 +35,7 @@ window.onload = () => {
   	toggle(toggleContent, toggleButton);
   });
 
-  //Responsive resize listener
+  // Responsive resize listener
   window.addEventListener('resize', function() {
       if(window.innerWidth < 992) {
         if(toggleContent.classList.contains('show')) {
@@ -48,4 +48,4 @@ window.onload = () => {
         }
       }
   });
-}
+};
