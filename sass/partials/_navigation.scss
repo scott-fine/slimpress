@@ -61,11 +61,11 @@ button.nav-button {
 .nav-wrapper.show {
   display: block;
   height: auto;
-  opacity: 0.95;
+  opacity: 0.9;
 }
 .nav-wrapper.hide {
+  height: 0;
   opacity: 0;
-  display: none;
 }
 
 nav {
