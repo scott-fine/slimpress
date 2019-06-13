@@ -16,17 +16,13 @@
 	</head>
 
 	<body <?php body_class(); ?>>
-
 		<!-- wrapper -->
 		<div class="wrapper">
-
 			<!-- header -->
 			<header>
-
 				<a class="logo" href="<?php echo home_url(); ?>">
 					<img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Logo">
 				</a>
-
 				<!-- navigation -->
 				<!-- nav -->
 				<div class="nav-wrapper" id="toggle-content">
