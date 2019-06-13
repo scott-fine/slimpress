@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="<?php bloginfo('charset'); ?>">
-		<title><?php wp_title(''); ?><?php if(wp_title('', false)) { echo ' :'; } ?> <?php bloginfo('name'); ?></title>
+		<title><?php bloginfo('name');?><?php wp_title('');?></title>
 
 		<link href="//www.google-analytics.com" rel="dns-prefetch">
     <link href="<?php echo get_template_directory_uri(); ?>/img/icons/favicon.ico" rel="shortcut icon">
@@ -16,17 +16,13 @@
 	</head>
 
 	<body <?php body_class(); ?>>
-
 		<!-- wrapper -->
 		<div class="wrapper">
-
 			<!-- header -->
 			<header>
-
 				<a class="logo" href="<?php echo home_url(); ?>">
 					<img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Logo">
 				</a>
-
 				<!-- navigation -->
 				<!-- nav -->
 				<div class="nav-wrapper" id="toggle-content">
